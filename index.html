@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<!-- The purpose of this webpage is to future-proof links 
+  that I provide to others or share online. If the location of
+  my projects ever changes on the web, I can update this page
+  to redirect users to the correct place, instead of having to
+  send/publish new links everywhere. -->
+  
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Redirecting...</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+</head>
+<body>
+  <p id="header">Redirecting you...</p>
+  <a id="homepageLink" href="https://www.google.com/search?q=ikebot">Ikebot homepage</a>
+</body>
+<script>
+  
+  //This is a list of all repositories that are directly in my hosting repo on Github
+  let inHostingRepo = `
+asciiMasonWoodlandPostbird
+beetleRace
+crackerMultiplication
+dataInColors
+digitsInColors
+digitsInColorsBeta
+doodleTheater
+frodoHasAFlamethrower
+invisibleInk
+measurePossibilitiesCalculator
+munchyMallCatalogue
+sheepCounter
+wifiPasswordSimulator
+xkcdAdventure
+`
+  let projects = {
+    //Ikebot home page
+    home: "https://ikebot108.weebly.com/",
+    
+    //Any projects in the 00_prototypesAndTesting folder of hosting repo
+    expTokenPrototype: "https://ikeb108.github.io/hosting/00_prototypesAndTesting/expTokenPrototype",
+    jumpOrbs: "https://ikeb108.github.io/hosting/00_prototypesAndTesting/jumpOrbs",
+    masterOfDice: "https://ikeb108.github.io/hosting/00_prototypesAndTesting/masterOfDice",
+    triggerSoundPlayer: "https://ikeb108.github.io/hosting/00_prototypesAndTesting/triggerSoundPlayer",
+    youtubeVideoDataCollector: "https://ikeb108.github.io/hosting/00_prototypesAndTesting/youtubeVideoDataCollector",
+    
+    //Any projects in the hallberg folder of hosting repo
+    dataInColorsExplain_nonVerbal: "https://ikeb108.github.io/hosting/hallberg/dataInColorsExplain_nonVerbal",
+    dataInColorsExplain_verbal: "https://ikeb108.github.io/hosting/hallberg/dataInColorsExplain_verbal",
+    dataInColorsSOR1: "https://ikeb108.github.io/hosting/hallberg/dataInColorsSOR1",
+    dataInColorsSOR2: "https://ikeb108.github.io/hosting/hallberg/dataInColorsSOR2",
+    dataInColorsSOR3: "https://ikeb108.github.io/hosting/hallberg/dataInColorsSOR3",
+    digitsInColorsExplain_nonVerbal: "https://ikeb108.github.io/hosting/hallberg/digitsInColorsExplain_nonVerbal",
+  }
+  
+  let homepageLink = document.getElementById("homepageLink")
+  homepageLink.setAttribute("href", projects["home"])
+  
+  inHostingRepo = inHostingRepo.split("\n")
+  for(let i in inHostingRepo){
+    let repo = inHostingRepo[i]
+    if(repo.length > 0){
+      projects[repo] = "https://ikeb108.github.io/hosting/" + repo
+    }
+  }
+  
+  let header = document.getElementById("header")
+  let currentURL = window.location.href
+  if(currentURL.includes("?")){
+    currentURL = currentURL.split("?")[1]
+    if( projects.hasOwnProperty(currentURL) ){
+      //The project specified in the URL is in this page's projects object
+      window.location.href = projects[currentURL]
+      header.innerHTML = "Redirecting you to " + currentURL + "..."
+    } else {
+      header.innerHTML = "Could not find the page requested: " + currentURL + ". Make sure the URL is spelled correctly."
+    }
+  } else {
+    header.innerHTML = "Could not find the page requested. It looks like no particular page was specified."
+  }
+  
+  
+</script>
+
+</html>
