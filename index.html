@@ -75,10 +75,11 @@ xkcdAdventure
       window.location.href = projects[currentURL]
       header.innerHTML = "Redirecting you to " + currentURL + "..."
     } else {
-      header.innerHTML = "Could not find the page requested: " + currentURL + ". Make sure the URL is spelled correctly."
+      //header.innerHTML = "Could not find the page requested: " + currentURL + ". Make sure the URL is spelled correctly."
+      window.location.href = projects["home"]
     }
   } else {
-    header.innerHTML = "Could not find the page requested. It looks like no particular page was specified."
+    window.location.href = projects["home"]
   }
   
   
